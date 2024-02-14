@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Habit Tracker</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
@@ -10,9 +11,140 @@
 <header class="bg-dark text-light p-2">
     <h1>Habit Tracker</h1>
 </header>
+<main class="bg-dark-subtle">
+    <nav class="d-md-none">
+        <div class="nav nav-tabs" id="navTab" role="tablist">
+            <button class="nav-link active" id="navGoalsTab" data-bs-toggle="tab" data-bs-target="#goalsTab"
+                    type="button"
+                    role="tab" aria-controls="homeTab" aria-selected="true">
+                Goals
+            </button>
+            <button class="nav-link" id="navDashboardTab" data-bs-toggle="tab" data-bs-target="#dashboardTab"
+                    type="button" role="tab" aria-controls="homeTab" aria-selected="true">
+                Dashboard
+            </button>
+            <button class="nav-link" id="navCalendarTab" data-bs-toggle="tab" data-bs-target="#calendarTab"
+                    type="button" role="tab" aria-controls="homeTab" aria-selected="true" disabled>
+                Calendar
+            </button>
+        </div>
+    </nav>
+    <div class="container-md">
+        <div class="tab-content" id="navTabContent">
+            <div class="tab-pane fade show active" id="goalsTab" role="tabpanel" aria-labelledby="navGoalsTab"
+                 tabindex="0">
+                <div class="col-sm-12 col-md-4 bg-light border-dark p-4">
+                    <h2>Goals</h2>
+                    <div class="goal border border-dark-subtle p-2 my-2">
+                        <div class="d-flex justify-content-between">
+                            <h4>Practice art</h4>
+                            <div class="d-inline-flex">
+                                <button class="btn btn-secondary">Edit</button>
+                                <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                                    Delete
+                                </button>
+                            </div>
+                        </div>
+                        <p>Days completed: 4/7</p>
+                        <div class="progress" role="progressbar">
+                            <span class="progress-bar bg-secondary" style="width: 57%"></span>
+                        </div>
+                    </div>
+                    <div class="goal border border-dark-subtle p-2 my-2">
+                        <div class="d-flex justify-content-between">
+                            <h4>Practice writing</h4>
+                            <div class="d-inline-flex">
+                                <button class="btn btn-secondary">Edit</button>
+                                <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                                    Delete
+                                </button>
+                            </div>
+                        </div>
+                        <p>Days completed: 6/7</p>
+                        <div class="progress" role="progressbar">
+                            <span class="progress-bar bg-secondary" style="width: 86%"></span>
+                        </div>
+                    </div>
+                    <div class="goal border border-dark-subtle p-2 my-2">
+                        <div class="d-flex justify-content-between">
+                            <h4>Take a walk</h4>
+                            <div class="d-inline-flex">
+                                <button class="btn btn-secondary">Edit</button>
+                                <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                                    Delete
+                                </button>
+                            </div>
+                        </div>
+                        <p>Days completed: 2/5</p>
+                        <div class="progress" role="progressbar">
+                            <span class="progress-bar bg-secondary" style="width: 40%"></span>
+                        </div>
+                    </div>
+                    <div class="goal border border-dark-subtle p-2 my-2">
+                        <div class="d-flex justify-content-between">
+                            <h4>Clean something</h4>
+                            <div class="d-inline-flex">
+                                <button class="btn btn-secondary">Edit</button>
+                                <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                                    Delete
+                                </button>
+                            </div>
+                        </div>
+                        <p>Days completed: 4/4</p>
+                        <div class="progress" role="progressbar">
+                            <span class="progress-bar bg-success" style="width: 100%"></span>
+                        </div>
+                    </div>
+                    <div class="collapse" id="collapseGoalForm">
+                        <form>
+                            <label for="goalName" class="form-label">Goal: </label>
+                            <input id="goalName" class="form-control" type="text" required>
+                            <label for="goalDays" class="form-label">Days: </label>
+                            <input id="goalDays" class="form-control" type="number">
+                        </form>
+                    </div>
+                    <div class="d-grid gap-2 d-md-block my-4">
+                        <button class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#collapseGoalForm"
+                                aria-expanded="false" aria-controls="collapseGoalForm">Add goal
+                        </button>
+                    </div>
+                </div>
+                <div class="modal fade" id="deleteModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Delete Item</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Are you sure you would like to delete this item?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Delete</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            </div>
 
-<main>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="dashboardTab" role="tabpanel" aria-labelledby="navDashboardTab" tabindex="0">
+                <div class="col-sm-12 col-md-8 bg-light border-dark">
+                    <h2>Dashboard</h2>
+                    <div class="scorecard">
 
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="calendarTab" role="tabpanel" aria-labelledby="navCalendarTab" tabindex="0">
+                <h2>Calendar (WIP)</h2>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p class="text-white text-center">Copyright lol</p>
+    </footer>
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
