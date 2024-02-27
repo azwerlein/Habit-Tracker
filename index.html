@@ -10,15 +10,15 @@
 <header class="bg-dark text-light p-2">
     <h1>Habit Tracker</h1>
 </header>
-<main class="bg-dark-subtle">
-    <nav class="d-md-none">
+<main id="app" class="bg-dark-subtle">
+    <nav>
         <div class="nav nav-tabs" id="navTab" role="tablist">
-            <button class="nav-link active" id="navGoalsTab" data-bs-toggle="tab" data-bs-target="#goalsTab"
+            <button class="nav-link" id="navGoalsDrawer" data-bs-toggle="offcanvas" data-bs-target="#goalsDrawer"
                     type="button"
-                    role="tab" aria-controls="homeTab" aria-selected="true">
+                    role="tab" aria-controls="goalsTab" aria-selected="true">
                 Goals
             </button>
-            <button class="nav-link" id="navDashboardTab" data-bs-toggle="tab" data-bs-target="#dashboardTab"
+            <button class="nav-link active" id="navDashboardTab" data-bs-toggle="tab" data-bs-target="#dashboardTab"
                     type="button" role="tab" aria-controls="homeTab" aria-selected="true">
                 Dashboard
             </button>
@@ -30,10 +30,14 @@
     </nav>
     <div class="container-md">
         <div class="tab-content" id="navTabContent">
-            <div class="tab-pane fade show active" id="goalsTab" role="tabpanel" aria-labelledby="navGoalsTab"
+            <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" id="goalsDrawer"
+                 role="tabpanel" aria-labelledby="navGoalsDrawer"
                  tabindex="0">
-                <div class="col-sm-12 col-md-4 bg-light border-dark p-4">
+                <div class="offcanvas-header">
                     <h2>Goals</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
                     <div class="goal border border-dark-subtle p-2 my-2">
                         <div class="d-flex justify-content-between">
                             <h4>Practice art</h4>
@@ -128,7 +132,8 @@
                     </div>
                 </div>
             </div>
-            <div class="tab-pane fade" id="dashboardTab" role="tabpanel" aria-labelledby="navDashboardTab" tabindex="0">
+            <div class="tab-pane fade show active" id="dashboardTab" role="tabpanel" aria-labelledby="navDashboardTab"
+                 tabindex="0">
                 <div class="col-sm-12 col-md-8 bg-light border-dark">
                     <h2>Dashboard</h2>
                     <div class="d-flex flex-column">
@@ -157,6 +162,12 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
+
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script src="js/app.js"></script>
+<script>
+    app.mount('#app');
+</script>
 
 </body>
 </html>
