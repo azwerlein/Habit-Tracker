@@ -38,11 +38,9 @@
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
-                    <goal-list-item v-for="goal in goalList"
-                                    :goal="goal"
-                                    :key="goal.name"
-                                    @select-goal="selectGoal"
-                    ></goal-list-item>
+                    <goal-list :goals="goalList"
+                               @select-goal="selectGoal"
+                    ></goal-list>
                     <div class="collapse" id="collapseGoalForm">
                         <form @submit.prevent="addGoal">
                             <label for="goalName" class="form-label">Goal: </label>
@@ -98,6 +96,7 @@
 <script src="js/models/Goal.js"></script>
 <!--Components-->
 <script src="js/components/GoalListItem.js"></script>
+<script src="js/components/GoalList.js"></script>
 <script src="js/components/DeleteGoalModal.js"></script>
 <script>
     app.mount('#app');

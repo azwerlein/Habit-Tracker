@@ -1,8 +1,6 @@
-function Goal(name, streak, maxDays) {
+function Goal(name, maxDays, streak) {
     this.name = name;
-    this.streak = streak;
     this.maxDays = maxDays;
-
-    this.percentage = () => this.streak / this.maxDays * 100;
+    this.streak = streak ?? 0;
 }
 

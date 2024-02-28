@@ -2,9 +2,9 @@ const app = Vue.createApp({
     data() {
         return {
             goalList: [
-                new Goal('Practice art', 4, 7),
-                new Goal('Practice writing', 6, 7),
-                new Goal('Take a walk', 2, 30),
+                new Goal('Practice art', 7, 4),
+                new Goal('Practice writing', 7, 6),
+                new Goal('Take a walk', 30, 2),
                 new Goal('Clean something', 4, 4)
             ],
             newGoal: new Goal('', 0, 0),
@@ -17,7 +17,6 @@ const app = Vue.createApp({
             this.newGoal = new Goal('', 0, 0);
         },
         deleteSelectedGoal() {
-            console.log(this.selectedGoal);
             this.goalList.splice(this.goalList.indexOf(this.selectedGoal), 1);
         },
         selectGoal(goal) {
