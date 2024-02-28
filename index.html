@@ -38,72 +38,17 @@
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
-                    <div class="goal border border-dark-subtle p-2 my-2">
-                        <div class="d-flex justify-content-between">
-                            <h4>Practice art</h4>
-                            <div class="d-inline-flex">
-                                <button class="btn btn-secondary">Edit</button>
-                                <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
-                                    Delete
-                                </button>
-                            </div>
-                        </div>
-                        <p>Days completed: 4/7</p>
-                        <div class="progress" role="progressbar">
-                            <span class="progress-bar bg-secondary" style="width: 57%"></span>
-                        </div>
-                    </div>
-                    <div class="goal border border-dark-subtle p-2 my-2">
-                        <div class="d-flex justify-content-between">
-                            <h4>Practice writing</h4>
-                            <div class="d-inline-flex">
-                                <button class="btn btn-secondary">Edit</button>
-                                <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
-                                    Delete
-                                </button>
-                            </div>
-                        </div>
-                        <p>Days completed: 6/7</p>
-                        <div class="progress" role="progressbar">
-                            <span class="progress-bar bg-secondary" style="width: 86%"></span>
-                        </div>
-                    </div>
-                    <div class="goal border border-dark-subtle p-2 my-2">
-                        <div class="d-flex justify-content-between">
-                            <h4>Take a walk</h4>
-                            <div class="d-inline-flex">
-                                <button class="btn btn-secondary">Edit</button>
-                                <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
-                                    Delete
-                                </button>
-                            </div>
-                        </div>
-                        <p>Days completed: 2/5</p>
-                        <div class="progress" role="progressbar">
-                            <span class="progress-bar bg-secondary" style="width: 40%"></span>
-                        </div>
-                    </div>
-                    <div class="goal border border-dark-subtle p-2 my-2">
-                        <div class="d-flex justify-content-between">
-                            <h4>Clean something</h4>
-                            <div class="d-inline-flex">
-                                <button class="btn btn-secondary">Edit</button>
-                                <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
-                                    Delete
-                                </button>
-                            </div>
-                        </div>
-                        <p>Days completed: 4/4</p>
-                        <div class="progress" role="progressbar">
-                            <span class="progress-bar bg-success" style="width: 100%"></span>
-                        </div>
-                    </div>
+                    <goal-list-item v-for="goal in goalList"
+                                    :goal="goal"
+                                    :key="goal.name"
+                    ></goal-list-item>
                     <div class="collapse" id="collapseGoalForm">
-                        <form>
+                        <form @submit.prevent="addGoal">
                             <label for="goalName" class="form-label">Goal: </label>
-                            <input id="goalName" class="form-control" type="text" required>
+                            <input id="goalName" class="form-control" type="text" v-model="newGoal.name" required>
                             <label for="goalDays" class="form-label">Days: </label>
-                            <input id="goalDays" class="form-control" type="number">
+                            <input id="goalDays" class="form-control" type="number" v-model="newGoal.maxDays">
+                            <button type="submit" class="btn btn-success form-control">Save</button>
                         </form>
                     </div>
                     <div class="d-grid gap-2 d-md-block my-4">
@@ -163,8 +108,13 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
 
+<!--Vue-->
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 <script src="js/app.js"></script>
+<!--Data-->
+<script src="js/models/Goal.js"></script>
+<!--Components-->
+<script src="js/components/GoalListItem.js"></script>
 <script>
     app.mount('#app');
 </script>
