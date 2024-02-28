@@ -8,6 +8,9 @@ app.component('GoalListItem', {
     methods: {
         percentComplete() {
             return this.goal.streak / this.goal.maxDays * 100;
+        },
+        selectGoal() {
+            this.$emit('select-goal', this.goal);
         }
     },
     template: `<div class="border border-dark-subtle p-2 my-2">
@@ -15,7 +18,7 @@ app.component('GoalListItem', {
                             <h4>{{goal.name}}</h4>
                             <div class="d-inline-flex">
                                 <button class="btn btn-secondary">Edit</button>
-                                <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                                <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" @click="selectGoal">
                                     Delete
                                 </button>
                             </div>

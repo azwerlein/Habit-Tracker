@@ -7,7 +7,8 @@ const app = Vue.createApp({
                 new Goal('Take a walk', 2, 30),
                 new Goal('Clean something', 4, 4)
             ],
-            newGoal: new Goal('', 0, 0)
+            newGoal: new Goal('', 0, 0),
+            selectedGoal: {}
         }
     },
     methods: {
@@ -15,8 +16,12 @@ const app = Vue.createApp({
             this.goalList.push(this.newGoal);
             this.newGoal = new Goal('', 0, 0);
         },
-        deleteGoal(goal) {
-            this.goalList.splice(this.goalList.indexOf(goal), 1);
+        deleteSelectedGoal() {
+            console.log(this.selectedGoal);
+            this.goalList.splice(this.goalList.indexOf(this.selectedGoal), 1);
+        },
+        selectGoal(goal) {
+            this.selectedGoal = goal;
         }
     },
     computed: {

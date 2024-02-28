@@ -41,6 +41,7 @@
                     <goal-list-item v-for="goal in goalList"
                                     :goal="goal"
                                     :key="goal.name"
+                                    @select-goal="selectGoal"
                     ></goal-list-item>
                     <div class="collapse" id="collapseGoalForm">
                         <form @submit.prevent="addGoal">
@@ -55,25 +56,6 @@
                         <button class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#collapseGoalForm"
                                 aria-expanded="false" aria-controls="collapseGoalForm">Add goal
                         </button>
-                    </div>
-                </div>
-                <div class="modal fade" id="deleteModal">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Delete Item</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <p>Are you sure you would like to delete this item?</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Delete</button>
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                            </div>
-
-                        </div>
                     </div>
                 </div>
             </div>
@@ -98,6 +80,7 @@
                 <h2>Calendar (WIP)</h2>
             </div>
         </div>
+        <delete-goal-modal @delete-goal="deleteSelectedGoal"></delete-goal-modal>
     </div>
     <footer>
         <p class="text-white text-center">Copyright lol</p>
@@ -115,6 +98,7 @@
 <script src="js/models/Goal.js"></script>
 <!--Components-->
 <script src="js/components/GoalListItem.js"></script>
+<script src="js/components/DeleteGoalModal.js"></script>
 <script>
     app.mount('#app');
 </script>
