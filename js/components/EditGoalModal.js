@@ -1,16 +1,11 @@
-app.component('DeleteGoalModal', {
+app.component('EditGoalModal', {
     props: {
         title: {
             type: String,
-            default: 'Delete Item'
+            default: 'Edit Goal'
         }
     },
-    methods: {
-        deleteGoal() {
-            this.$emit('delete-goal');
-        }
-    },
-    template: `<div class="modal fade" id="deleteGoalModal">
+    template: `<div class="modal fade" id="editGoalModal">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -19,10 +14,10 @@ app.component('DeleteGoalModal', {
                                 aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <p>Are you sure you would like to delete this item?</p>
+                        <p>TODO</p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" @click="deleteGoal">Delete</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Save</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                     </div>
 

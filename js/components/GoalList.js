@@ -5,9 +5,10 @@ app.component('GoalList', {
             required: true
         }
     },
+    // emits: ['select-goal'],
     methods: {
         selectGoal(goal) {
-            this.$emit('selectGoal', goal);
+            this.$emit('select-goal', goal);
         }
     },
     template: `

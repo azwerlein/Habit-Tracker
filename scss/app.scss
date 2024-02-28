@@ -1,5 +1,17 @@
 // Variables
+// Colors
 $primary: #4444bb;
+$dark: #2B2D42;
+$light: #8D99AE;
+$danger: #D80032;
+
+// Nav
+$nav-link-color: $light;
+$nav-link-hover-color: $light;
+$nav-link-disabled-color: #555555;
+$nav-tabs-link-hover-border-color: $light;
+$nav-tabs-link-active-bg: $light;
+
 
 // Imports
 @import "../node_modules/bootstrap/scss/bootstrap";

@@ -10,25 +10,25 @@
 <header class="bg-dark text-light p-2">
     <h1>Habit Tracker</h1>
 </header>
-<main id="app" class="bg-dark-subtle">
-    <nav>
-        <div class="nav nav-tabs" id="navTab" role="tablist">
-            <button class="nav-link" id="navGoalsDrawer" data-bs-toggle="offcanvas" data-bs-target="#goalsDrawer"
-                    type="button"
-                    role="tab" aria-controls="goalsTab" aria-selected="true">
-                Goals
-            </button>
-            <button class="nav-link active" id="navDashboardTab" data-bs-toggle="tab" data-bs-target="#dashboardTab"
-                    type="button" role="tab" aria-controls="homeTab" aria-selected="true">
-                Dashboard
-            </button>
-            <button class="nav-link" id="navCalendarTab" data-bs-toggle="tab" data-bs-target="#calendarTab"
-                    type="button" role="tab" aria-controls="homeTab" aria-selected="true" disabled>
-                Calendar
-            </button>
-        </div>
-    </nav>
+<main id="app" class="bg-dark">
     <div class="container-md">
+        <nav>
+            <div class="container-md nav nav-tabs" id="navTab" role="tablist">
+                <button class="nav-link" id="navGoalsDrawer" data-bs-toggle="offcanvas" data-bs-target="#goalsDrawer"
+                        type="button"
+                        role="tab" aria-controls="goalsTab" aria-selected="true">
+                    Goals
+                </button>
+                <button class="nav-link active" id="navDashboardTab" data-bs-toggle="tab" data-bs-target="#dashboardTab"
+                        type="button" role="tab" aria-controls="homeTab" aria-selected="true">
+                    Dashboard
+                </button>
+                <button class="nav-link" id="navCalendarTab" data-bs-toggle="tab" data-bs-target="#calendarTab"
+                        type="button" role="tab" aria-controls="homeTab" aria-selected="true" disabled>
+                    Calendar
+                </button>
+            </div>
+        </nav>
         <div class="tab-content" id="navTabContent">
             <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" id="goalsDrawer"
                  role="tabpanel" aria-labelledby="navGoalsDrawer"
@@ -59,26 +59,29 @@
             </div>
             <div class="tab-pane fade show active" id="dashboardTab" role="tabpanel" aria-labelledby="navDashboardTab"
                  tabindex="0">
-                <div class="col-sm-12 col-md-8 bg-light border-dark">
-                    <h2>Dashboard</h2>
-                    <div class="d-flex flex-column">
-                        <div class="">
-
-                        </div>
-                        <div class="">
-
-                        </div>
+                <div class="bg-light border-dark p-5">
+                    <div class="d-flex justify-content-between mb-2">
+                        <h2>Dashboard</h2>
+                        <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#entryModal">New entry
+                        </button>
                     </div>
-                    <div class="scorecard">
-
+                    <div class="d-flex flex-column">
+                        <day-list-item v-for="day in dayList"
+                                       :day="day"
+                        ></day-list-item>
                     </div>
                 </div>
+                <div class="tab-pane fade" id="calendarTab" role="tabpanel" aria-labelledby="navCalendarTab"
+                     tabindex="0">
+                    <h2>Calendar (WIP)</h2>
+                </div>
             </div>
-            <div class="tab-pane fade" id="calendarTab" role="tabpanel" aria-labelledby="navCalendarTab" tabindex="0">
-                <h2>Calendar (WIP)</h2>
-            </div>
+            <edit-goal-modal></edit-goal-modal>
+            <delete-goal-modal @delete-goal="deleteSelectedGoal"></delete-goal-modal>
+            <entry-modal :goals="goalList"
+            ></entry-modal>
         </div>
-        <delete-goal-modal @delete-goal="deleteSelectedGoal"></delete-goal-modal>
+
     </div>
     <footer>
         <p class="text-white text-center">Copyright lol</p>
@@ -94,10 +97,14 @@
 <script src="js/app.js"></script>
 <!--Data-->
 <script src="js/models/Goal.js"></script>
+<script src="js/models/Day.js"></script>
 <!--Components-->
 <script src="js/components/GoalListItem.js"></script>
 <script src="js/components/GoalList.js"></script>
+<script src="js/components/DayListItem.js"></script>
 <script src="js/components/DeleteGoalModal.js"></script>
+<script src="js/components/EditGoalModal.js"></script>
+<script src="js/components/EntryModal.js"></script>
 <script>
     app.mount('#app');
 </script>

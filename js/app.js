@@ -8,7 +8,18 @@ const app = Vue.createApp({
                 new Goal('Clean something', 4, 4)
             ],
             newGoal: new Goal('', 0, 0),
-            selectedGoal: {}
+            selectedGoal: {},
+            dayList: [
+                new Day(new Date(), new Map([
+                    [new Goal('Practice art', 7, 4), true],
+                    [new Goal('Practice writing', 7, 6), false]
+                ])),
+                new Day(new Date(), new Map([
+                    [new Goal('Practice art', 7, 4), true],
+                    [new Goal('Practice writing', 7, 6), true]
+                ]))
+            ],
+            selectedDay: {}
         }
     },
     methods: {

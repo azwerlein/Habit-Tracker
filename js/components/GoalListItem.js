@@ -17,8 +17,8 @@ app.component('GoalListItem', {
                         <div class="d-flex justify-content-between">
                             <h4>{{goal.name}}</h4>
                             <div class="d-inline-flex">
-                                <button class="btn btn-secondary">Edit</button>
-                                <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" @click="selectGoal">
+                                <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#editGoalModal" @click="selectGoal">Edit</button>
+                                <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteGoalModal" @click="selectGoal">
                                     Delete
                                 </button>
                             </div>
