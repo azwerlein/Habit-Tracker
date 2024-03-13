@@ -3,7 +3,7 @@ app.component('GoalListItem', {
         goal: {
             type: Goal,
             required: true
-        }
+        },
     },
     methods: {
         percentComplete() {
@@ -11,7 +11,7 @@ app.component('GoalListItem', {
         },
         selectGoal() {
             this.$emit('select-goal', this.goal);
-        }
+        },
     },
     template: `<div class="border border-dark-subtle p-2 my-2">
                         <div class="d-flex justify-content-between">

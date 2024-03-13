@@ -8,8 +8,22 @@ app.component('EntryModal', {
         goals: {
             type: Array,
             required: true
+        },
+    },
+    data() {
+        return {
+            day: makeDay(new Date(), this.goals),
         }
     },
+    methods: {
+        saveDay() {
+            this.$emit('save-day', this.day);
+            this.day = makeDay(new Date(), this.goals);
+        },
+    },
+    emits: [
+        'save-day',
+    ],
     template: `<div class="modal fade" id="entryModal">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -19,12 +33,12 @@ app.component('EntryModal', {
                     </div>
                     <form @submit.prevent="">
                         <div class="modal-body">
-                            <div class="form-check form-check-reverse form-switch" v-for="goal in goals">
+                            <div class="form-check form-check-reverse form-switch" v-for="(goal, complete) in goals">
                                 <label class="form-check-label">{{goal.name}}: </label>
-                                <input class="form-check-input" type="checkbox" role="switch">
+                                <input class="form-check-input" type="checkbox" role="switch" v-model="complete">
                             </div>
                             <div class="modal-footer">
-                                <button class="btn btn-success" type="submit">Save</button>
+                                <button class="btn btn-success" type="submit" @click="saveDay()">Save</button>
                             </div>
                         </div>
                     </form>

@@ -1,0 +1,14 @@
+table.calendar {
+  text-align: center;
+  border-collapse: collapse;
+  td {
+    text-align: right;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 40px;
+  }
+  td:hover {
+    background-color: skyblue;
+    cursor: cell;
+  }
+}

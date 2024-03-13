@@ -6,87 +6,160 @@
     <link rel="icon" type="image/x-icon" href="images/favicon.png">
     <link rel="stylesheet" href="css/app.css">
 </head>
-<body>
-<header class="bg-dark text-light p-2">
+<body class="bg-dark">
+
+<header class="bg-primary bg-gradient text-light p-2">
     <h1>Habit Tracker</h1>
 </header>
-<main id="app" class="bg-dark">
-    <div class="container-md">
-        <nav>
-            <div class="container-md nav nav-tabs" id="navTab" role="tablist">
-                <button class="nav-link" id="navGoalsDrawer" data-bs-toggle="offcanvas" data-bs-target="#goalsDrawer"
-                        type="button"
-                        role="tab" aria-controls="goalsTab" aria-selected="true">
-                    Goals
-                </button>
-                <button class="nav-link active" id="navDashboardTab" data-bs-toggle="tab" data-bs-target="#dashboardTab"
+
+<main id="app">
+    <div class="container-md m-auto row">
+
+        <div class="col-4 bg-white" id="goalsPane">
+            <div>
+                <h2>Goals</h2>
+            </div>
+            <div>
+                <goal-list :goals="goalList"
+                           @select-goal="selectGoal"
+                ></goal-list>
+                <div class="collapse" id="collapseGoalForm">
+                    <form @submit.prevent="addGoal">
+                        <label for="goalName" class="form-label">Goal: </label>
+                        <input id="goalName" class="form-control" type="text" v-model="newGoal.name" required>
+                        <label for="goalDays" class="form-label">Days: </label>
+                        <input id="goalDays" class="form-control" type="number" v-model="newGoal.maxDays">
+                        <button type="submit" class="btn btn-success form-control">Save</button>
+                    </form>
+                </div>
+                <div class="d-grid gap-2 d-md-block my-4">
+                    <button class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#collapseGoalForm"
+                            aria-expanded="false" aria-controls="collapseGoalForm">Add goal
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-8">
+            <nav class="nav nav-tabs" id="navTab" role="tablist">
+                <button class="nav-link active" id="navDashboardTab" data-bs-toggle="tab"
+                        data-bs-target="#dashboardTab"
                         type="button" role="tab" aria-controls="homeTab" aria-selected="true">
                     Dashboard
                 </button>
                 <button class="nav-link" id="navCalendarTab" data-bs-toggle="tab" data-bs-target="#calendarTab"
-                        type="button" role="tab" aria-controls="homeTab" aria-selected="true" disabled>
+                        type="button" role="tab" aria-controls="homeTab" aria-selected="true">
                     Calendar
                 </button>
-            </div>
-        </nav>
-        <div class="tab-content" id="navTabContent">
-            <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" id="goalsDrawer"
-                 role="tabpanel" aria-labelledby="navGoalsDrawer"
-                 tabindex="0">
-                <div class="offcanvas-header">
-                    <h2>Goals</h2>
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                </div>
-                <div class="offcanvas-body">
-                    <goal-list :goals="goalList"
-                               @select-goal="selectGoal"
-                    ></goal-list>
-                    <div class="collapse" id="collapseGoalForm">
-                        <form @submit.prevent="addGoal">
-                            <label for="goalName" class="form-label">Goal: </label>
-                            <input id="goalName" class="form-control" type="text" v-model="newGoal.name" required>
-                            <label for="goalDays" class="form-label">Days: </label>
-                            <input id="goalDays" class="form-control" type="number" v-model="newGoal.maxDays">
-                            <button type="submit" class="btn btn-success form-control">Save</button>
-                        </form>
-                    </div>
-                    <div class="d-grid gap-2 d-md-block my-4">
-                        <button class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#collapseGoalForm"
-                                aria-expanded="false" aria-controls="collapseGoalForm">Add goal
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="tab-pane fade show active" id="dashboardTab" role="tabpanel" aria-labelledby="navDashboardTab"
-                 tabindex="0">
-                <div class="bg-light border-dark p-5">
-                    <div class="d-flex justify-content-between mb-2">
-                        <h2>Dashboard</h2>
-                        <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#entryModal">New entry
-                        </button>
-                    </div>
-                    <div class="d-flex flex-column">
-                        <day-list-item v-for="day in dayList"
-                                       :day="day"
-                        ></day-list-item>
+            </nav>
+
+            <div class="tab-content" id="navTabContent">
+                <div class="tab-pane fade show active" id="dashboardTab" role="tabpanel"
+                     aria-labelledby="navDashboardTab"
+                     tabindex="0">
+                    <div class="bg-light border-dark p-5">
+                        <div class="d-flex justify-content-between mb-2">
+                            <h2>Dashboard</h2>
+                            <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#entryModal">New entry
+                            </button>
+                        </div>
+                        <day-list :days="dayList"></day-list>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="calendarTab" role="tabpanel" aria-labelledby="navCalendarTab"
                      tabindex="0">
-                    <h2>Calendar (WIP)</h2>
+                    <div class="bg-light border-dark p-5">
+                        <h2>Calendar</h2>
+                        <table class="calendar">
+                            <thead>
+                            <tr>
+                                <th>Sun</th>
+                                <th>Mon</th>
+                                <th>Tue</th>
+                                <th>Wed</th>
+                                <th>Thu</th>
+                                <th>Fri</th>
+                                <th>Sat</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>1</td>
+                                <td>2</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>5</td>
+                                <td>6</td>
+                                <td>7</td>
+                                <td>8</td>
+                                <td>9</td>
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td>11</td>
+                                <td>12</td>
+                                <td>13</td>
+                                <td>14</td>
+                                <td>15</td>
+                                <td>16</td>
+                            </tr>
+                            <tr>
+                                <td>17</td>
+                                <td>18</td>
+                                <td>19</td>
+                                <td>20</td>
+                                <td>21</td>
+                                <td>22</td>
+                                <td>23</td>
+                            </tr>
+                            <tr>
+                                <td>24</td>
+                                <td>25</td>
+                                <td>26</td>
+                                <td>27</td>
+                                <td>28</td>
+                                <td>29</td>
+                                <td>30</td>
+                            </tr>
+                            <tr>
+                                <td>31</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>5</td>
+                                <td>6</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
+
+                <edit-goal-modal
+                        @begin-edit="selectGoal"
+                        @save-edit="saveGoal"></edit-goal-modal>
+                <delete-goal-modal @delete-goal="deleteSelectedGoal"></delete-goal-modal>
+                <entry-modal
+                        @save-day="addDay"
+                        :goals="goalList"
+                ></entry-modal>
             </div>
-            <edit-goal-modal></edit-goal-modal>
-            <delete-goal-modal @delete-goal="deleteSelectedGoal"></delete-goal-modal>
-            <entry-modal :goals="goalList"
-            ></entry-modal>
+
         </div>
 
     </div>
-    <footer>
-        <p class="text-white text-center">Copyright lol</p>
-    </footer>
 </main>
+
+<footer>
+    <p class="text-white text-center">Copyright lol</p>
+</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
@@ -102,6 +175,8 @@
 <script src="js/components/GoalListItem.js"></script>
 <script src="js/components/GoalList.js"></script>
 <script src="js/components/DayListItem.js"></script>
+<script src="js/components/DayList.js"></script>
+<script src="js/components/AppModal.js"></script>
 <script src="js/components/DeleteGoalModal.js"></script>
 <script src="js/components/EditGoalModal.js"></script>
 <script src="js/components/EntryModal.js"></script>

@@ -32,7 +32,14 @@ const app = Vue.createApp({
         },
         selectGoal(goal) {
             this.selectedGoal = goal;
-        }
+        },
+        saveGoal(goal) {
+            const index = this.goalList.indexOf(this.selectedGoal);
+            this.goalList[index] = goal;
+        },
+        addDay(day) {
+            this.dayList.push(day);
+        },
     },
     computed: {
 

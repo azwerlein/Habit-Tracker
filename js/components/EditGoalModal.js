@@ -3,25 +3,44 @@ app.component('EditGoalModal', {
         title: {
             type: String,
             default: 'Edit Goal'
+        },
+    },
+
+    data() {
+        return {
+            goal: new Goal("", 0, 0),
         }
     },
-    template: `<div class="modal fade" id="editGoalModal">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">{{title}}</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <p>TODO</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Save</button>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    </div>
 
-                </div>
-            </div>
-        </div>`
+    methods: {
+        beginEdit(targetGoal) {
+            this.goal = new Goal(targetGoal.name, targetGoal.maxDays, targetGoal.streak);
+            this.$emit('begin-edit');
+        },
+
+        saveEdit() {
+            this.$emit('save-edit', this.goal);
+            this.goal = new Goal("", 0, 0);
+        },
+    },
+
+    emits: [
+        'begin-edit',
+        'save-edit',
+    ],
+
+    template: `<app-modal id="editGoalModal" :title="title">
+                    <template #body>
+                        <div>
+                            <label class="form-label">Name: </label>
+                            <input class="form-control" type="text" v-model="goal.name">
+                            <label class="form-label">Max days: </label>
+                            <input class="form-control" type="text" v-model="goal.maxDays">
+                        </div>
+                    </template>
+                    <template #footer>
+                        <button type="button" class="btn btn-success" data-bs-dismiss="modal" @click="saveEdit()">Save</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    </template>
+               </app-modal>`
 });

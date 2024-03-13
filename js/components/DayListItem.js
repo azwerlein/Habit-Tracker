@@ -15,10 +15,10 @@ app.component('DayListItem', {
         }
     },
     template: `<div class="card bg-white px-2 mb-2">
-                            <div :class="grade() > 50 ? 'bg-success-subtle' : 'bg-danger-subtle' + ' card-header'">
+                            <div :class="grade() > 50 ? 'bg-success-subtle' : 'bg-danger-subtle' + ' card-header px-5'">
                                 <h5 class="card-title">{{day.date.toLocaleDateString()}}</h5>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body px-5">
                                 <ul class="list-group list-group-flush">
                                     <li class="d-flex justify-content-between" v-for="[goal, value] in day.goals">
                                         <p>{{goal.name}}</p>

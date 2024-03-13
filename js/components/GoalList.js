@@ -3,13 +3,13 @@ app.component('GoalList', {
         goals: {
             type: Array,
             required: true
-        }
+        },
     },
     // emits: ['select-goal'],
     methods: {
         selectGoal(goal) {
             this.$emit('select-goal', goal);
-        }
+        },
     },
     template: `
         <goal-list-item v-for="goal in goals"

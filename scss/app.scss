@@ -4,6 +4,7 @@ $primary: #4444bb;
 $dark: #2B2D42;
 $light: #8D99AE;
 $danger: #D80032;
+// White: #EDF2F4
 
 // Nav
 $nav-link-color: $light;
@@ -15,4 +16,4 @@ $nav-tabs-link-active-bg: $light;
 
 // Imports
 @import "../node_modules/bootstrap/scss/bootstrap";
-
+@import "calendar";
