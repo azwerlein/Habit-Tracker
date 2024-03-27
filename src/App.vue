@@ -17,20 +17,8 @@ const goalList = ref([
   new Goal('Take a walk', 30, 2),
   new Goal('Clean something', 4, 4)
 ]);
-const dayList = ref([
-  new Day(new Date(), new Map([
-    [new Goal('Practice art', 7, 4), true],
-    [new Goal('Practice writing', 7, 6), false]
-  ])),
-  new Day(new Date(), new Map([
-    [new Goal('Practice art', 7, 4), true],
-    [new Goal('Practice writing', 7, 6), true]
-  ]))
-]);
 let newGoal = new Goal("", 0, 0);
 let selectedGoal = {};
-let selectedDay = {};
-
 
 function addGoal() {
   goalList.value.push(newGoal);
@@ -50,8 +38,25 @@ function saveGoal(goal) {
   goalList.value[index] = goal;
 }
 
+const dayList = ref([
+  new Day(new Date(), new Map([
+    [new Goal('Practice art', 7, 4), true],
+    [new Goal('Practice writing', 7, 6), false]
+  ])),
+  new Day(new Date(), new Map([
+    [new Goal('Practice art', 7, 4), true],
+    [new Goal('Practice writing', 7, 6), true]
+  ]))
+]);
+let selectedDay = {};
+
 function addDay(day) {
   dayList.value.push(day);
+}
+
+const entryModal = ref(null);
+function openEntryModal() {
+  entryModal.value.open();
 }
 </script>
 
@@ -106,7 +111,7 @@ function addDay(day) {
           <div class="bg-light border-dark p-5">
             <div class="d-flex justify-content-between mb-2">
               <h2>Dashboard</h2>
-              <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#entryModal">New entry
+              <button class="btn btn-dark" v-on:click="openEntryModal">New entry
               </button>
             </div>
             <day-list :days="dayList"></day-list>
@@ -116,18 +121,18 @@ function addDay(day) {
              tabindex="0">
           <calendar></calendar>
         </div>
-
-        <edit-goal-modal
-            @begin-edit="selectGoal"
-            @save-edit="saveGoal"></edit-goal-modal>
-        <delete-goal-modal @delete-goal="deleteSelectedGoal"></delete-goal-modal>
-        <entry-modal
-            @save-day="addDay"
-            :goals="goalList"
-        ></entry-modal>
       </div>
-
     </div>
+
+    <edit-goal-modal
+        @begin-edit="selectGoal"
+        @save-edit="saveGoal"></edit-goal-modal>
+    <delete-goal-modal @delete-goal="deleteSelectedGoal"></delete-goal-modal>
+    <entry-modal
+        @save-day="addDay"
+        :goals="goalList"
+        ref="entryModal"
+    ></entry-modal>
 
   </div>
 
