@@ -17,6 +17,10 @@ function percentComplete() {
 function selectGoal() {
   emit('select-goal', props.goal);
 }
+
+function editGoal() {
+  emit('edit-goal', props.goal);
+}
 </script>
 
 <template>
@@ -24,7 +28,7 @@ function selectGoal() {
     <div class="d-flex justify-content-between">
       <h4>{{goal.name}}</h4>
       <div class="d-inline-flex">
-        <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#editGoalModal" @click="selectGoal">Edit</button>
+        <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#editGoalModal" @click="editGoal">Edit</button>
         <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteGoalModal" @click="selectGoal">
           Delete
         </button>

@@ -13,9 +13,9 @@ export default {
     grade() {
       let sum = 0;
       this.day.goals.forEach((value) => {
-        if (value) sum++;
+        if (value.checked) sum++;
       });
-      return sum / this.day.goals.size * 100;
+      return sum / this.day.goals.length * 100;
     }
   },
 }

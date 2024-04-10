@@ -4,3 +4,10 @@ export default function Goal(name, maxDays, streak) {
     this.streak = streak ?? 0;
 }
 
+export function GoalList() {
+    let arr = [];
+    arr.add = function () {
+
+    };
+    return arr;
+}

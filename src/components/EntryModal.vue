@@ -20,6 +20,7 @@ export default {
   },
   methods: {
     saveDay() {
+      console.log(this.day + " " + this.day.goals);
       this.$emit('save-day', this.day);
       this.day = makeDay(new Date(), this.goals);
     },
@@ -47,7 +48,7 @@ export default {
           <div class="modal-body">
             <div class="form-check form-check-reverse form-switch" v-for="(goal, i) in goals">
               <label class="form-check-label">{{goal.name}}: </label>
-              <input class="form-check-input" type="checkbox" role="switch" v-model="this.day.goals.values[i]">
+              <input class="form-check-input" type="checkbox" role="switch" v-model="this.day.goals[i].checked">
             </div>
             <div class="modal-footer">
               <button class="btn btn-success" type="submit" @click="saveDay()">Save</button>

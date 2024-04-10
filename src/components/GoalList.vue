@@ -1,9 +1,10 @@
 <script setup>
 import GoalListItem from "./GoalListItem.vue";
+import EnhancedList from "../models/EnhancedList.js";
 
 defineProps({
   goals: {
-    type: Array,
+    type: EnhancedList,
     required: true
   },
 });
@@ -17,7 +18,7 @@ function selectGoal(goal) {
 </script>
 
 <template>
-  <goal-list-item v-for="goal in goals"
+  <goal-list-item v-for="(goal, index) in goals"
                   :goal="goal"
                   :key="goal.name"
                   @select-goal="selectGoal"

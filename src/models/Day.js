@@ -1,3 +1,5 @@
+import CheckList from "./CheckList.js";
+
 export default function Day(date, goals) {
     this.date = date;
     this.goals = goals;
@@ -5,6 +7,9 @@ export default function Day(date, goals) {
 
 export function makeDay(date, goals) {
     console.log(goals);
-    let entries = goals.map(goal => [goal, false]);
-    return new Day(date, new Map(entries));
+    let entries = new CheckList();
+    for (let i = 0; i < goals.length; i++) {
+        entries.add(goals[i])
+    }
+    return new Day(date, entries);
 }

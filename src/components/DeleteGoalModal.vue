@@ -13,6 +13,7 @@ export default {
   methods: {
     deleteGoal() {
       this.$emit('delete-goal');
+      console.log('delete')
     },
   },
 }
